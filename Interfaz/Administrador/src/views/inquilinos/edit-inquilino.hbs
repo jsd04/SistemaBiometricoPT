@@ -1,0 +1,72 @@
+{{#each errors}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{text}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{{/each}}
+
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Editar Inquilino</h3>
+    </div>
+    <div class="card-body">
+      <form action="/inquilinos/edit-inquilino/{{inquilino._id}}?_method=PUT" method="POST">
+        <input type="hidden" name="_method" value="PUT" />
+        <div class="mb-3">
+          <label for="title">Nombre:</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            value="{{inquilino.nombre}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">Curp:</label>
+          <input
+            type="text"
+            name="curp"
+            class="form-control"
+            value="{{inquilino.curp}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">No.Piso:</label>
+          <input
+            type="text"
+            name="piso"
+            class="form-control"
+            value="{{inquilino.piso}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="description">No.Departamento:</label>
+          <textarea
+            name="departamento"
+            class="form-control"
+          >{{inquilino.departamento}}</textarea>
+        </div>
+        <div class="mb-3">
+          <label for="description">No. Teléfono:</label>
+          <textarea
+            name="telefono"
+            class="form-control"
+          >{{inquilino.telefono}}</textarea>
+        </div>
+        <div class="mb-3">
+          <label for="description">Correo:</label>
+          <textarea
+            name="correo"
+            class="form-control"
+          >{{inquilino.correo}}</textarea>
+        </div>
+        <button class="btn btn-primary w-100" type="submit">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
