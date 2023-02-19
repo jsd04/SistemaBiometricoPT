@@ -1,0 +1,72 @@
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header bg-dark text-center">
+      <h3 class="text-white">Nuevo trabajador</h3>
+    </div>
+    <div class="card-body text-right">
+      <form action="/trabajadores/new-trabajador" method="POST">
+        <div class="mb-3">
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            name="nombre"
+            class="form-control"
+            placeholder="Nombre Completo"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="curp">Curp:</label>
+          <input
+            type="text"
+            name="curp"
+            class="form-control"
+            placeholder="Curp"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="telefono">No. Teléfono:</label>
+          <input
+            type="text"
+            name="telefono"
+            class="form-control"
+            placeholder="No. Teléfono"
+          autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="correo">Correo:</label>
+          <textarea
+            name="correo"
+            class="form-control"
+            placeholder="Correo"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="cargo">Cargo:</label>
+          <input
+            type="text"
+            name="cargo"
+            class="form-control"
+            placeholder="Cargo"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="domicilio">Domicilio:</label>
+          <textarea
+            name="domicilio"
+            class="form-control"
+            placeholder="Domicilio"
+          ></textarea>
+        </div>
+        
+        
+        <button class="btn btn-primary w-100" type="submit">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
