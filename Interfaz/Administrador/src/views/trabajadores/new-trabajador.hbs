@@ -1,0 +1,108 @@
+
+    <header class="row" style="position: relative; height: 50vh; width: 100%;">
+        <div
+          class="col s12 m11 l9 xl8 "
+          style="position: absolute; top: 0px; height: 110%; left: 0px;"
+        >
+          <img
+            alt="imagen1"
+            src="/img/ba8.png"
+            class="responsive-image" 
+            style="height: 90%; width: 80%; left: 0px; top: 0px; position: absolute; object-fit: cover;"
+          />
+        </div>
+        <div class="col s12 m9 l9 xl8 white-text" 
+             style="position: absolute; top: 50%; left: 30%; height: 100%; transform: translate(-50%, -50%); width: 50%;"
+        >
+        <br>
+        <br>
+            <blockquote>
+              <h2 class="subtitulo black-text " >
+                <b>
+                  Aquí puedes añadir nuevo usuario <br /> como Trabajador
+                </b>
+              </h2>
+            </blockquote>
+        </div>
+        
+        <div class="col m6 l6 xl5 hide-on-small-only" style="height: 100%; position: absolute; top: 0%; right: 0%;">
+          <img alt="" src="/img/parteba11_3.png" 
+          class="responsive-img" style="position: absolute; right: -5px; top: 0px; height: 100%; width: 50%;">
+        </div>  
+    </header>
+      <br />
+      <br />
+      <br />
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header bg-info text-center" style="--bs-bg-opacity: .7;">
+      <h3 class="text-white">Nuevo trabajador</h3>
+    </div>
+    <div class="card-body text-left bg-info p-2" style="--bs-bg-opacity: .3;">
+      <form action="/trabajadores/new-trabajador" method="POST">
+        <div class="mb-3">
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            name="nombre"
+            class="form-control"
+            placeholder="Nombre Apellido Paterno Apellido Marterno"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="curp">Curp:</label>
+          <input
+            type="text"
+            name="curp"
+            class="form-control"
+            placeholder="Curp"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="telefono">No. Teléfono:</label>
+          <input
+            type="text"
+            name="telefono"
+            class="form-control"
+            placeholder="5501030205"
+          autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="correo">Correo:</label>
+          <textarea
+            name="correo"
+            class="form-control"
+            placeholder="someone@axample.com"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="cargo">Cargo:</label>
+          <input
+            type="text"
+            name="cargo"
+            class="form-control"
+            placeholder="Cargo"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="domicilio">Domicilio:</label>
+          <textarea
+            name="domicilio"
+            class="form-control"
+            placeholder="Calle.Jesus Manuel No.17, Col.Luis Cordoba, Municipio/Delegación"
+          ></textarea>
+        </div>
+        
+        
+        <button class="btn btn-info w-100" type="submit">
+           Guardar 
+              <i class="material-icons "> save</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
