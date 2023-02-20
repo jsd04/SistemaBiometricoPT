@@ -1,0 +1,109 @@
+
+    <header class="row" style="position: relative; height: 50vh; width: 100%;"  >
+        <div
+          class="col s12 m11 l9 xl8 "
+          style="position: absolute; top: 0px; height: 110%; left: 0px;"
+        >
+          <img
+            alt="imagen1"
+            src="/img/rec4.png"
+            class="responsive-image" 
+            style="height: 200%; width: 80%; left: 0px; top: 0px; position: absolute; object-fit: cover;"
+          />
+        </div>
+        <div class="col s12 m9 l9 xl8 white-text" 
+             style="position: absolute; top: 50%; left: 30%; height: 100%; transform: translate(-50%, -50%); width: 50%;"
+        >
+        <br>
+              <br>
+            <blockquote>
+              
+              <h2 class="subtitulo black-text ">
+                <b>
+                  Aquí puedes añadir nuevo usuario <br /> como Visitante
+                </b>
+              </h2>
+            </blockquote>
+        </div>
+        
+        <div class="col m6 l6 xl5 hide-on-small-only" style="height: 100%; position: absolute; top: 0%; right: 0%;">
+          <img alt="" src="/img/parteba9.png" 
+          class="responsive-img" style="position: absolute; right: -5px; top: 0px; height: 100%; width: 50%;">
+        </div>  
+    </header>
+      <br />
+      <br />
+      <br />
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header bg-success text-center" style="--bs-bg-opacity: .7;">
+      <h3 class="text-white">Nuevo visitante</h3>
+    </div>
+    <div class="card-body text-left bg-success "style="--bs-bg-opacity: .3;">
+      <form action="/visitantes/new-visitante" method="POST">
+        <div class="mb-3">
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            name="nombre"
+            class="form-control"
+            placeholder="Nombre Apellido Paterno Apellido Marterno"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="curp">Curp:</label>
+          <input
+            type="text"
+            name="curp"
+            class="form-control"
+            placeholder="Curp"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="telefono">No. Teléfono:</label>
+          <input
+            type="text"
+            name="telefono"
+            class="form-control"
+            placeholder="5501030205"
+          autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="correo">Correo:</label>
+          <textarea
+            name="correo"
+            class="form-control"
+            placeholder="someone@axample.com"
+          ></textarea>
+        <div class="mb-3">
+          <label for="nombreInquilino">Nombre de Inquilino:</label>
+          <input
+            type="text"
+            name="nombreInquilino"
+            class="form-control"
+            placeholder="Nombre de Inquilino"
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="parentesco">Parentesco:</label>
+          <input
+            type="text"
+            name="parentesco"
+            class="form-control"
+            placeholder="Parentesco"
+            autofocus
+          />
+        </div>
+        </div>
+        <button class="btn btn-success w-100" type="submit">
+          Guardar
+              <i class="material-icons "> save</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
