@@ -36,13 +36,34 @@
       <br />
       <br />
       <br />
+      <div class="row justify-content-end">
+        <div class="col-3 align-self-end">
+          <a class="waves-effect waves-light text-white btn p-2 text-center  " style="background: rgb(29, 240, 134); border-radius: 20px;"
+                    href="javascript:window.history.back(); " style=""
+                > 
+            <i class="material-icons  text-white large rounded-circle btn p-2 text-center">arrow_back
+            </i>       Regresar              
+          </a>
+        </div>
+      </div>
+    
+      <!--div class="row justify-content-end">
+        <div class="col-3 align-self-end">
+        <button class="btn btn-success text-center btn p-2 " onclick="window.history.back()">
+          <span class="material-symbols-rounded btn p-2  text-center text-white">
+              arrow_back
+          </span> Regresar 
+        </button>
+        </div>
+      </div-->  
+      
   <div class="container p-5">
         <h3 style="font-family: 'Franklin Gothic Medium'">Inquilinos registrados</h3>
          <!--h1 class="bg-info">Hola {{Administrador.name}}</h1-->
     <div class="row justify-content-end">
       <div class="col-3 align-self-center">
-        <a class="btn btn-outline-info text-center" style=" background-image: var(--bs-gradient);"
-           href="/inquilinos/add" style="border-radius: 20px;"
+        <a class="btn btn-outline-info text-center" style=" background-image: var(--bs-gradient);border-radius: 20px;"
+           href="/inquilinos/add" style=""
         >
           <p style="font-family: 'Franklin Gothic Medium'" >
             Añadir inquilino <i class="material-icons rounded-circle ">person_add</i>
@@ -72,9 +93,9 @@
         <p>No. Teléfono: {{ telefono }} </p>
         <p>Correo: {{ correo }} </p>
         <!-- DELETE REQUEST -->
-        <form action="/inquilinos/delete/{{_id}}?_method=DELETE" method="POST">
+        <form action="/inquilinos/delete/{{_id}}?_method=DELETE" method="POST" class="btn">
           <input type="hidden" name="_method" value="DELETE">
-          <button type="submit" class="btn btn-danger btn-block btn-sm ">
+          <button type="submit" class="btn btn-danger btn-block ">
             <span class="material-icons me-1">delete</span>
             Eliminar
             </button>

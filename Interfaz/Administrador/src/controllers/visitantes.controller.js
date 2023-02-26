@@ -52,28 +52,6 @@ export const renderVisitantesInicial = async (req, res) => {
   res.render("visitantes/visitantes_inicial");
 }
 
-export const searchVisitantes = async (req, res) => {
-  //console.log('query -> ',req.query)
-  if(req.query.buscar){
-    console.log("buscar ", req.query.buscar)
-    const visitantesFound = await Visitante.find({nombre:{ $regex: req.query.buscar, $options:"$i"}})
-    /* ***************** regex y options **************
-      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
-      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
-      $ opción y el parámetro con un valor de $ i */
-
-    //const visitantesFound = await Visitante.find({nombre:{ $eq: req.query.buscar}})
-    .sort({ date: "desc" })
-    .lean();
-    console.log('El Visitante que coincidio es :   ', visitantesFound)
-    res.render("visitantes/search-visitantes",{ visitantesFound })
-  }
-  else{
-    console.log("no hay parametro")
-    res.render("visitantes/search-visitantes")
-  }
-}
-
 export const renderEditForm = async (req, res) => {
   const visitante = await Visitante.findById(req.params.id).lean();
   /*if (visitante.user != req.user.id) {
@@ -95,3 +73,51 @@ export const deleteVisitante= async (req, res) => {
   req.flash("success_msg", "Visitante eliminado  exitosamente");
   res.redirect("/visitantes");
 };
+
+export const searchVisitantes = async (req, res) => {
+  //console.log('query -> ',req.query)
+  if(req.query.buscar && req.query.nombreInquilino){
+    console.log("buscar ", req.query.buscar)
+    console.log("nombreInquilino", req.query.nombreInquilino)
+    const visitantesFound = await Visitante.find(
+      { $and: [ {nombre:{ $regex:  req.query.buscar, $options:"$i"}},
+        {nombreInquilino:{ $regex:  req.query.nombreInquilino, $options:"$i"}}  ]} )
+    /* ***************** regex y options **************
+      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
+      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
+      $ opción y el parámetro con un valor de $ i */
+
+      //const inquilinosFound = await Inquilino.find({nombre:{ $eq: req.query.buscar}})
+    .sort({ date: "desc" })
+      .lean();
+      console.log('El Visitante que coincidio es :   ', visitantesFound)
+      res.render("visitantes/search-visitantes",{ visitantesFound })
+  }
+  else if(req.query.buscar){
+    console.log("buscar ", req.query.buscar)
+    const visitantesFound = await Visitante.find({nombre:{ $regex: req.query.buscar, $options:"$i"}})
+    /* ***************** regex y options **************
+      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
+      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
+      $ opción y el parámetro con un valor de $ i */
+
+    //const visitantesFound = await Visitante.find({nombre:{ $eq: req.query.buscar}})
+    .sort({ date: "desc" })
+    .lean();
+    console.log('El Visitante que coincidio es :   ', visitantesFound)
+    res.render("visitantes/search-visitantes",{ visitantesFound })
+  }
+  if(req.query.nombreInquilino){
+    console.log("nombreInquilino", req.query.nombreInquilino)
+    const visitantesFound = await Visitante.find(
+        {nombreInquilino:{ $regex:  req.query.nombreInquilino, $options:"$i"}} )
+      .sort({ date: "desc" })
+      .lean();
+      console.log('El Visitante que coincidio es :   ', visitantesFound)
+      res.render("visitantes/search-visitantes",{ visitantesFound })
+  }
+  else{
+    console.log("no hay parametro")
+    res.render("visitantes/search-visitantes")
+  }
+}

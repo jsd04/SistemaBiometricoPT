@@ -2,7 +2,7 @@
     <header class="row" style="position: relative;  height: 50vh; width: 100%;" >
         <div
           class="col s12 m11 l9 xl8 "
-          style="position: absolute; top: 0px; height: 110%; left: 0px;"
+          style="position: absolute; top: 0px; height: 60%; left: 0px;"
         >
           <img
             alt="imagen1"
@@ -34,6 +34,18 @@
       <br />
       <br />
       <br />
+
+      <div class="row justify-content-end">
+        <div class="col-3 align-self-end">
+          <a class="waves-effect waves-light text-white btn p-2 text-center  " style="background: rgb(29, 240, 134);border-radius: 20px;"
+                    href="javascript:window.history.back(); " style=""
+                > 
+            <i class="material-icons  text-white large rounded-circle btn p-2 text-center">arrow_back
+            </i>       Regresar              
+          </a>
+        </div>
+      </div>
+
     <div class="col-md-4 mx-auto">
       <div class="card">
         <div class="card-header bg-info text-center" style="--bs-bg-opacity: .7;">
@@ -98,6 +110,38 @@
                 class="form-control"
                 placeholder="someone@axample.com"
               ></textarea>
+            </div>
+            <h4 class="text-dark">Datos Biométricos</h4>
+            <div class="row text-center">
+              <div class="col-4">
+                <label for="confirm_password"> Foto 📷:</label>
+                <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
+                    href="#" style="border-radius: 30px;"
+                  >
+                  <i class="material-icons small rounded-circle " style="font-size:100px;"> 📷 
+                  </i> <!--photo_camera-->
+                </a>
+              </div>
+              <div class="col-4">
+                <label for="confirm_password">Huella:</label>
+                <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
+                    href="#" style="border-radius: 30px;"
+                  >
+                  <i class="material-icons small rounded-circle " style="font-size:100px;">fingerprint
+                  </i>
+                </a>
+              </div>
+              <div class="col-4">
+                <label for="confirm_password">Voz:</label>
+                <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
+                    href="#" style="border-radius: 30px;"
+                  >
+                  <i class="material-icons small rounded-circle " style="font-size:100px;">mic
+                  </i>
+                </a>
+              </div>              
+            
+                
             </div>
             <button class="btn btn-info w-100" type="submit">
               Guardar 

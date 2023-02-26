@@ -52,28 +52,6 @@ export const renderInquilinosInicial = async (req, res) => {
   res.render("inquilinos/inquilinos_inicial_copy");
 }
 
-export const searchInquilinos = async (req, res) => {
-  //console.log('query -> ',req.query)
-  if(req.query.buscar){
-    console.log("buscar ", req.query.buscar)
-    const inquilinosFound = await Inquilino.find({nombre:{ $regex: req.query.buscar, $options:"$i"}})
-    /* ***************** regex y options **************
-      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
-      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
-      $ opción y el parámetro con un valor de $ i */
-
-    //const inquilinosFound = await Inquilino.find({nombre:{ $eq: req.query.buscar}})
-    .sort({ date: "desc" })
-    .lean();
-    console.log('El Inquilino que coincidio es :   ', inquilinosFound)
-    res.render("inquilinos/search-inquilinos",{ inquilinosFound })
-  }
-  else{
-    console.log("no hay parametro")
-    res.render("inquilinos/search-inquilinos")
-  }
-}
-
 export const renderEditForm = async (req, res) => {
   const inquilino = await Inquilino.findById(req.params.id).lean();
  /* if (inquilino.user != req.user.id) {
@@ -95,3 +73,95 @@ export const deleteInquilino= async (req, res) => {
   req.flash("success_msg", "Inquilino eliminado  exitosamente");
   res.redirect("/inquilinos/all-inquilinos");
 };
+
+export const searchInquilinos = async (req, res) => {
+  //console.log('query -> ',req.query)
+  if(req.query.buscar && req.query.piso && req.query.dep){
+    console.log("buscar ", req.query.buscar)
+    console.log("piso ", req.query.piso)
+    console.log("dep ", req.query.dep)
+    const inquilinosFound = await Inquilino.find(
+      { $and: [ {nombre:{ $regex:  req.query.buscar, $options:"$i"}},
+       {piso:{$eq:req.query.piso}}, {departamento:{$eq:req.query.dep}} ]} )
+    //.sort({ date: "desc" })}
+     // {nombre:{ $regex: req.query.buscar, $options:"$i"}})
+    /* ***************** regex y options **************
+      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
+      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
+      $ opción y el parámetro con un valor de $ i */
+
+      //const inquilinosFound = await Inquilino.find({nombre:{ $eq: req.query.buscar}})
+    .sort({ date: "desc" })
+      .lean();
+      console.log('El Inquilino que coincidio es :   ', inquilinosFound)
+      res.render("inquilinos/search-inquilinos",{ inquilinosFound })
+  }
+  else if(req.query.buscar && req.query.piso){
+    console.log("buscar2 ", req.query.buscar)
+    console.log("piso2 ", req.query.piso)
+    console.log("dep2 ", req.query.dep)
+    const inquilinosFound = await Inquilino.find( { $and: [ {nombre:{ $regex:  req.query.buscar, $options:"$i"}}, {piso:{$eq:req.query.piso}} ]})
+    .sort({ date: "desc" })
+      .lean();
+      console.log('El Inquilino que coincidio es :   ', inquilinosFound)
+      res.render("inquilinos/search-inquilinos",{ inquilinosFound })
+  }
+  else if(req.query.buscar &&  req.query.dep ){
+    console.log("buscar3 ", req.query.buscar)
+    console.log("piso3 ", req.query.piso)
+    console.log("dep3 ", req.query.dep)
+    const inquilinosFound = await Inquilino.find(
+      ( { $and: [ {nombre:{ $regex:  req.query.buscar, $options:"$i"}}, {departamento:{$eq:req.query.dep}} ]}) 
+      )
+      .sort({ date: "desc" })
+      .lean();
+      console.log('El Inquilino que coincidio es :   ', inquilinosFound)
+      res.render("inquilinos/search-inquilinos",{ inquilinosFound })
+  }
+  else if((req.query.piso && req.query.dep) ){
+    console.log("buscar4 ", req.query.buscar)
+    console.log("piso4 ", req.query.piso)
+    console.log("dep4 ", req.query.dep)
+    const inquilinosFound = await Inquilino.find(
+      ( { $and: [ {piso:{$eq:req.query.piso}}, {departamento:{$eq:req.query.dep}} ]})
+      )
+      .sort({ date: "desc" })
+      .lean();
+      console.log('El Inquilino que coincidio es :   ', inquilinosFound)
+      res.render("inquilinos/search-inquilinos",{ inquilinosFound })
+  }
+  else if(req.query.buscar){
+    console.log("buscar ", req.query.buscar)
+    const inquilinosFound = await Inquilino.find({nombre:{ $regex: req.query.buscar, $options:"$i"}})
+    /* ***************** regex y options **************
+      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
+      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
+      $ opción y el parámetro con un valor de $ i */
+
+    //const inquilinosFound = await Inquilino.find({nombre:{ $eq: req.query.buscar}})
+    .sort({ date: "desc" })
+    .lean();
+    console.log('El Inquilino que coincidio es :   ', inquilinosFound)
+    res.render("inquilinos/search-inquilinos",{ inquilinosFound })
+  }
+  else if(req.query.piso){
+    console.log("piso ", req.query.piso)
+    const inquilinosFound = await Inquilino.find( {piso:{$eq:req.query.piso}} )
+    .sort({ date: "desc" })
+    .lean();
+    console.log('El Inquilino que coincidio es :   ', inquilinosFound)
+    res.render("inquilinos/search-inquilinos",{ inquilinosFound })
+  }
+  else if(req.query.dep){
+    console.log("departamento", req.query.dep)
+    const inquilinosFound = await Inquilino.find({departamento:{$eq:req.query.dep}})
+    .sort({ date: "desc" })
+    .lean();
+    console.log('El Inquilino que coincidio es :   ', inquilinosFound)
+    res.render("inquilinos/search-inquilinos",{ inquilinosFound })
+  }
+  else{
+    console.log("no hay parametro")
+    res.render("inquilinos/search-inquilinos")
+  }
+}

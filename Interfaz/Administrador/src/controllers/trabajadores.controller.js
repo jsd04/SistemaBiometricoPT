@@ -52,27 +52,7 @@ export const renderTrabajadoresInicial = async (req, res) => {
   res.render("trabajadores/trabajadores_inicial");
 }
 
-export const searchTrabajadores = async (req, res) => {
-  //console.log('query -> ',req.query)
-  if(req.query.buscar){
-    console.log("buscar ", req.query.buscar)
-    const trabajadoresFound = await Trabajador.find({nombre:{ $regex: req.query.buscar, $options:"$i"}})
-    /* ***************** regex y options **************
-      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
-      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
-      $ opción y el parámetro con un valor de $ i */
 
-    //const trabajadoresFound = await Trabajador.find({nombre:{ $eq: req.query.buscar}})
-    .sort({ date: "desc" })
-    .lean();
-    console.log('El Trabajador que coincidio es :   ', trabajadoresFound)
-    res.render("trabajadores/search-trabajadores",{ trabajadoresFound })
-  }
-  else{
-    console.log("no hay parametro")
-    res.render("trabajadores/search-trabajadores")
-  }
-}
 
 export const renderEditForm = async (req, res) => {
   const trabajador = await Trabajador.findById(req.params.id).lean();
@@ -95,3 +75,51 @@ export const deleteTrabajador= async (req, res) => {
   req.flash("success_msg", "Trabajador eliminado  exitosamente");
   res.redirect("/trabajadores");
 };
+export const searchTrabajadores = async (req, res) => {
+  //console.log('query -> ',req.query)
+  if(req.query.buscar && req.query.cargo){
+    console.log("buscar ", req.query.buscar)
+    console.log("cargo ", req.query.cargo)
+    const trabajadoresFound = await Trabajador.find(
+      { $and: [ {nombre:{ $regex:  req.query.buscar, $options:"$i"}},
+        {cargo:{ $regex:  req.query.cargo, $options:"$i"}}  ]} )
+    //.sort({ date: "desc" })}
+     // {nombre:{ $regex: req.query.buscar, $options:"$i"}})
+    /* ***************** regex y options **************
+      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
+      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
+      $ opción y el parámetro con un valor de $ i */
+
+      //const inquilinosFound = await Inquilino.find({nombre:{ $eq: req.query.buscar}})
+    .sort({ date: "desc" })
+      .lean();
+      console.log('El Trabajador que coincidio es :   ', trabajadoresFound)
+      res.render("trabajadores/search-trabajadores",{ trabajadoresFound })
+  }
+  else if(req.query.buscar){
+    console.log("buscar ", req.query.buscar)
+    const trabajadoresFound = await Trabajador.find({nombre:{ $regex: req.query.buscar, $options:"$i"}})
+    /* ***************** regex y options **************
+      Usa $ regex operador como una expresión regular para encontrar patrones en una cadena.
+      Para distinguir entre mayúsculas y minúsculas, las expresiones regulares utilizan 
+      $ opción y el parámetro con un valor de $ i */
+
+    //const trabajadoresFound = await Trabajador.find({nombre:{ $eq: req.query.buscar}})
+    .sort({ date: "desc" })
+    .lean();
+    console.log('El Trabajador que coincidio es :   ', trabajadoresFound)
+    res.render("trabajadores/search-trabajadores",{ trabajadoresFound })
+  }
+  else if( req.query.cargo ){
+    console.log("cargo3 ", req.query.cargo)
+    const trabajadoresFound = await Trabajador.find( {cargo: { $regex:  req.query.cargo, $options:"$i"}} )
+      .sort({ date: "desc" })
+      .lean();
+      console.log('El Trabajador que coincidio es :   ', trabajadoresFound)
+      res.render("trabajadores/search-trabajadores",{ trabajadoresFound })
+  } 
+  else{
+    console.log("no hay parametro")
+    res.render("trabajadores/search-trabajadores")
+  }
+}

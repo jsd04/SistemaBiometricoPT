@@ -11,7 +11,7 @@ const VisitanteSchema = new mongoose.Schema(
       required: true,
     },
     telefono: {
-      type:Number,
+      type: String,
       required: true,
     },
     correo: {
