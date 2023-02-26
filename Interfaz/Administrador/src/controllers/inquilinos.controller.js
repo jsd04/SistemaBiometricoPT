@@ -23,6 +23,14 @@ export const createNewInquilino = async (req, res) => {
   if (!correo) {
     errors.push({ text: "Por favor escribe el correo" });
   }
+  /* *******   Correo  ******* */
+  var valido= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+  ///.+\@.+\..+/
+  var esvalido = valido.test(email);
+  if(esvalido==false){
+   // [, ''] // <- Validación regexp para correo
+    errors.push({text:"Error de correo, por favor ingrese un correo válido"})
+  }
   if (errors.length > 0)
     return res.render("inquilinos/new-inquilino", {
       errors,

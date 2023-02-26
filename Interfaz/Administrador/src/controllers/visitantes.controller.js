@@ -17,6 +17,14 @@ export const createNewVisitante = async (req, res) => {
   if (!correo) {
     errors.push({ text: "Por favor escribe el correo" });
   }
+  /* *******   Correo  ******* */
+  var valido= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+  ///.+\@.+\..+/
+  var esvalido = valido.test(correo);
+  if(esvalido==false){
+   // [, ''] // <- Validación regexp para correo
+    errors.push({text:"Error de correo, por favor ingrese un correo válido"})
+  }
   if (!nombreInquilino) {
     errors.push({ text: "Por favor escribe el nombre del inquilino a visitar" });
   }

@@ -5,7 +5,9 @@ import bcrypt from "bcryptjs";
 const UserSchema = new mongoose.Schema(
   {
     name: { type: String, trim: true, required: true},
-    email: { type: String, required: false, unique: true, trim: true },
+    email: { type: String, required: false, unique: true, trim: true, 
+     /* match     : [/.+\@.+\..+/, 'Por favor ingrese un correo válido'] // <- Validación regexp para correo */
+    },
     telefono: { type: String, trim: true, required: false},
     domicilio: { type: String, trim: true, required: false},
     password: { type: String, required: true },

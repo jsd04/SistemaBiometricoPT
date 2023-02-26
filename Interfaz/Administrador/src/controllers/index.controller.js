@@ -11,6 +11,9 @@ export const renderIndex = (req, res) => {
     res.render("contact",{ title: 'Contact'})
   };
 
+
+
+  
   /*
   export const buscador = async (req,res) => {
     

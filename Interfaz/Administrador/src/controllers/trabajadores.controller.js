@@ -14,8 +14,14 @@ export const createNewTrabajador = async (req, res) => {
   if (!telefono) {
     errors.push({ text: "Por favor escribe el número de teléfono" });
   }
-  if (!correo) {
-    errors.push({ text: "Por favor escribe el correo" });
+
+  /* *******   Correo  ******* */
+  var valido= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+  ///.+\@.+\..+/
+  var esvalido = valido.test(email);
+  if(esvalido==false){
+   // [, ''] // <- Validación regexp para correo
+    errors.push({text:"Error de correo, por favor ingrese un correo válido"})
   } 
   if (!cargo) {
     errors.push({ text: "Por favor escribe tu cargo" });

@@ -13,12 +13,29 @@ export const signup = async (req, res) => {
   if(name.length <= 0 || telefono.length<=0 || domicilio.length<=0 || password.length<=0 || email.length<=0 || confirm_password.length<=0){
     errors.push({text: 'Por favor ingresa todos tus datos'});
   }
+  /* *******   Correo  ******* */
+  var valido= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+  ///.+\@.+\..+/
+  var esvalido = valido.test(email);
+  if(esvalido==false){
+   // [, ''] // <- Validación regexp para correo
+    errors.push({text:"Error de correo, por favor ingrese un correo válido"})
+  }
+  /* *******   Contraseña  ******* */
+  var valipassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/
+  var esvalipassword=valipassword.test(password)
+  if (esvalipassword) {
+    req.flash("success_msg", "Contraseña valida");
+  }
+  else {//La contraseña no cumple las condiciones.
+    errors.push({ 
+      text: " La contraseña debe cumplir los siguientes requerimientos: *Al menos una letra, *Al menos una letra mayúscula, *Al menos un número, *Al menos 8 carácteres. " 
+    });
+  }
   if (password !== confirm_password) {
     errors.push({ text: "Las contraseñas no coinciden" });
   }
-  if (password.length >0 && password.length <4) {
-    errors.push({ text: "Las contraseñas deben tener al menos 4 caracteres." });
-  }
+ 
   if (errors.length > 0) {
     return res.render("administradores/signup", {
       errors,
