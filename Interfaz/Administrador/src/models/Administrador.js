@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema(
     domicilio: { type: String, trim: true, required: false},
     password: { type: String, required: true },
     date:{ type: Date, default: Date.now},
-    rostro:{ type: Buffer, required: false},
+    rostro:{ data: Buffer, contentType: String },
+    // type: Buffer, required: false
   },
   {
     timestamps: true,

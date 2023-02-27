@@ -10,7 +10,10 @@ import {
   renderAuthIni,
   renderEditForm,
   updateAdmin,
+  //uploadFile,
+  //upload,
 } from "../controllers/administradores.controllers.js";
+// const controleradmin = require ("../controllers/administradores.controllers.js");
 import {isAuthenticated} from "../helpers/administradores.js";
 const router = Router();
 
@@ -34,5 +37,9 @@ router.get("/administradores/principal",isAuthenticated, renderAuthIni);
 router.get("/administradores/edit/:id", renderEditForm);
 
 router.put("/administradores/edit-admin/:id", updateAdmin);
+
+/* ************* Subida de foto  *********** */
+ 
+//router.post("/administradores/signup" /*, controleradmin.upload*/ ,uploadFile)
 
 export default router;

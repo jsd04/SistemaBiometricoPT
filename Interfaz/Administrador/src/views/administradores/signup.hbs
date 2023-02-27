@@ -82,13 +82,38 @@
           <div class="row text-center">
             <div class="col-4">
               <label for="confirm_password"> Foto 📷:</label>
-              <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
-                   href="#" style="border-radius: 30px;"
+              <!-- Button trigger modal -->
+              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                   style="border-radius: 30px;" 
                 >
                 <i class="material-icons small rounded-circle " style="font-size:100px;"> 📷 
                 </i> <!--photo_camera-->
               </a>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-dark">
+                  <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
+                    <h1 class="modal-title" id="staticBackdropLabel">Upload Image</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/uploadphoto" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="myImage" accept="image/*">
+                        <br>
+                        <input type="submit" value="Upload Photo" style="background:rgb(5, 146, 217); border: 5px solid rgb(37, 79, 247); margin: 30px 0px;">
+                    </form>
+                  </div>
+                  <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Comprendido</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="col-4">
               <label for="confirm_password">Huella:</label>
               <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 

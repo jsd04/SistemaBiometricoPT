@@ -1,5 +1,6 @@
 import Administrador from "../models/Administrador.js";
 import passport from "passport";
+//import multer from "multer";
 
 //Para registarse
 export const renderSignUpForm = (req, res) => res.render("administradores/signup");
@@ -24,13 +25,13 @@ export const signup = async (req, res) => {
   /* *******   Contraseña  ******* */
   var valipassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/
   var esvalipassword=valipassword.test(password)
-  if (esvalipassword) {
-    req.flash("success_msg", "Contraseña valida");
-  }
-  else {//La contraseña no cumple las condiciones.
+  if (!esvalipassword) {
     errors.push({ 
       text: " La contraseña debe cumplir los siguientes requerimientos: *Al menos una letra, *Al menos una letra mayúscula, *Al menos un número, *Al menos 8 carácteres. " 
     });
+  }
+  else {//La contraseña no cumple las condiciones.
+    req.flash("success_msg", "Contraseña valida");
   }
   if (password !== confirm_password) {
     errors.push({ text: "Las contraseñas no coinciden" });
@@ -113,4 +114,22 @@ export const updateAdmin= async (req, res) => {
   req.flash("success_msg", "Administrador actualizado exitosamente");
   res.redirect("/administradores/perfil");
 };
+/* ************* Subida de foto  *********** */
+
+/*const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+      cb(null, `${Date.now()}-${file.originalname}`)
+  }
+})
+*/
+//const upload = multer({ storage: storage })
+
+//exports.upload = upload.single('myFile')
+/*
+export const uploadFile = (req,res) => {
+  res.send ({ 'Enviar un archivo'})
+}*/
 

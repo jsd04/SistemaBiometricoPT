@@ -11,6 +11,7 @@ import session from "express-session";
 import passport from "passport";
 import { MONGODB_URI, PORT } from "./config.js";
 import "./config/passport.js";
+import multer from 'multer';
 
 import indexRoutes from './routes/index.router.js';
 import inquilinosRoutes from "./routes/inquilinos.router.js";
