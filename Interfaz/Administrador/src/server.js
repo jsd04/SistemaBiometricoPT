@@ -12,6 +12,11 @@ import passport from "passport";
 import { MONGODB_URI, PORT } from "./config.js";
 import "./config/passport.js";
 import multer from 'multer';
+import {v4 as uuidv4} from 'uuid';
+import webcam from 'node-webcam';
+
+
+
 
 import indexRoutes from './routes/index.router.js';
 import inquilinosRoutes from "./routes/inquilinos.router.js";
@@ -36,7 +41,17 @@ const hbs = exphbs.create({
   });
   app.engine(".hbs", hbs.engine);
   app.set("view engine", ".hbs");
-
+//Parametros de la foto
+var options = { 
+    width: 1280,
+    height: 720,
+    quality: 100,
+    delay: 1,
+    saveShots: true,
+    output: "jpeg",
+    device: true, 
+    callbackReturn: "location"
+};
 //Middlewares ----
 //--Cada que lleguen datos de un formulario vamos a pasar datos a formato json para manipularlos
 app.use(morgan("dev"));
@@ -53,6 +68,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+const storage = multer.diskStorage({
+  destination: path.join(__dirname,'public/uploads'),
+  filename: (req, file, cb, filename) => {  //cb callback
+    path.extname(file.originalname )
+      cb(null, uuidv4() + path.extname(file.originalname) );  
+  }
+});
+//app.use(multer({  storage: storage}).array('myImages',3));
+app.use(multer({  storage: storage}).single('myImage'));
+
+  
 
 // Global Variables
 app.use((req, res, next) => {

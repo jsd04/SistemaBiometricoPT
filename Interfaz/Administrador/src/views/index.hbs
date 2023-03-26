@@ -52,13 +52,123 @@
             </div>
         </div>
             
-    </div>
-
-    <form action="/" method="POST" enctype="multipart/form-data">
-            <input type="file" name="myImage" accept="image/*">
+    </div> 
+    <!--
+    <form action="/uploads" method="POST" enctype="multipart/form-data">
+            <input type="file" name="myImages" accept="image/*" multiple>
             <br>
-            <input type="submit" value="Upload" style="background:rgb(5, 146, 217); border: 5px solid rgb(37, 79, 247); margin: 30px 0px;">
-    </form>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">
+                    Upload
+                </button>
+            </div>
+    </form> 
+-->
+
+    <div class="col-4">
+        <label for="confirm_password"> Foto:</label>
+              <!-- Button trigger modal  -->
+              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                   style="border-radius: 30px;" 
+                >
+                <i class="material-icons small rounded-circle " style="font-size:90px;"> 📷 
+                </i> 
+                <!-- photo_camera -->                     
+              </a>
+    </div>
+    <button id="openModal">Abrir modal</button>
+	
+	<div id="cameraModal" style="display: none;">
+		<video id="videoElement"></video>
+		<button id="closeModal">Cerrar modal</button>
+	</div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-dark">
+                  <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
+                    <h1 class="modal-title" id="staticBackdropLabel">Captura el rostro</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <!--div class="modal-body">
+                       <div class="container">
+                          <div class="row">
+                              <div class="col ">
+                                
+                                  Aqui se hace la captura de imágenes del rostro
+                                  <br>
+                                 <video id="video" autoplay></video>
+                                <div class="text-center">
+                                    <button id="captureBtn" class="btn btn-primary">Capturar foto</button>
+                                </div>
+                                
+    
+                            
+                              </div>
+                          <div class="col">
+                                
+	                        <canvas id="canvas" style="display: none;"></canvas>
+                          </div>       
+                          </div>
+                        </div>
+                  </div-->
+                     <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                            <div class="col ">
+                                <div id="my_camera"></div>
+                                <br>
+                                                                 <video id="video" autoplay></video>
+	                        <canvas id="canvas" style="display: none;"></canvas>
+
+                                <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar</button>
+                                </div>
+
+                            </div>
+                            <div class="col">
+                                <img src="" alt="Imagen capturada" id="captura-img">
+                                <h4>Rostro</h4>
+              <div class="col-md-4 ">
+                 <div class="card-columns">
+                    <div class="card animated fadeInDown">
+                      <img src={{imageData}} class="card-img-top" alt="">
+                          
+                     </div>
+                               
+                   </div>
+               </div>
+                            </div>
+                            </div>
+                        </div>
+                     </div>
+
+
+                  <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
+                    <!--button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button-->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="document.body.removeChild(document.querySelector('img'))">Aceptar</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+         
+            <div class="col ">
+                                
+                                  Aqui se hace la captura de imágenes del rostro
+                                  <br>
+                                 <video id="video" autoplay></video>
+                                <div class="text-center">
+                                    <button id="captureBtn" class="btn btn-primary">Capturar</button>
+                                </div>
+                              </div>
+                          <div class="col">
+                                
+	                        <canvas id="canvas" style="display: none;"></canvas>
+                          </div>       
 
     <img src="/img/ellipse1.png" alt="" 
         style="position: absolute; width: 1616px; height: 1148px; left: 100px; bottom: -900px; z-index: -1;"

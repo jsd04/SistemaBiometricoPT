@@ -12,7 +12,18 @@ const UserSchema = new mongoose.Schema(
     domicilio: { type: String, trim: true, required: false},
     password: { type: String, required: true },
     date:{ type: Date, default: Date.now},
-    rostro:{ data: Buffer, contentType: String },
+    rostro:{ 
+      filename:{ type:String },
+      path:{ type:String },
+      originalname:{ type:String },
+      date:{ type: Date, default: Date.now},
+      size:{  type: Number},
+      rostro:{ data: Buffer, contentType: String },
+        
+    }
+     /* Buffer son datos binariosy en mongodb las imagenes se guardan en datos binarios
+        y en el buffer datos pregunta por el tipo de contenido lo cual es una cadena
+      */
     // type: Buffer, required: false
   },
   {

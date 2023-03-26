@@ -10,7 +10,7 @@ import {
   renderAuthIni,
   renderEditForm,
   updateAdmin,
-  //uploadFile,
+//  uploadFile,
   //upload,
 } from "../controllers/administradores.controllers.js";
 // const controleradmin = require ("../controllers/administradores.controllers.js");
@@ -41,5 +41,7 @@ router.put("/administradores/edit-admin/:id", updateAdmin);
 /* ************* Subida de foto  *********** */
  
 //router.post("/administradores/signup" /*, controleradmin.upload*/ ,uploadFile)
+//router.post("/upload" ,uploadFile)
+
 
 export default router;

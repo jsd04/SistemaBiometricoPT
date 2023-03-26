@@ -12,7 +12,7 @@
         alt="Logo"
       />
       <div class="card-body">
-        <form action="/administradores/signup" method="POST">
+        <form action="/administradores/signup" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="name">Nombre:</label>
             <input
@@ -81,13 +81,14 @@
           <h4 class="text-dark">Datos Biométricos</h4>
           <div class="row text-center">
             <div class="col-4">
-              <label for="confirm_password"> Foto 📷:</label>
-              <!-- Button trigger modal -->
+              <label for="confirm_password"> Foto:</label>
+              <!-- Button trigger modal  -->
               <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                    style="border-radius: 30px;" 
                 >
-                <i class="material-icons small rounded-circle " style="font-size:100px;"> 📷 
-                </i> <!--photo_camera-->
+                <i class="material-icons small rounded-circle " style="font-size:90px;"> 📷 
+                </i> 
+                <!-- photo_camera -->                     
               </a>
             </div>
 
@@ -96,19 +97,40 @@
               <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content text-dark">
                   <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
-                    <h1 class="modal-title" id="staticBackdropLabel">Upload Image</h1>
+                    <h1 class="modal-title" id="staticBackdropLabel">Captura el rostro</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form action="/uploadphoto" method="POST" enctype="multipart/form-data">
-                        <input type="file" name="myImage" accept="image/*">
-                        <br>
-                        <input type="submit" value="Upload Photo" style="background:rgb(5, 146, 217); border: 5px solid rgb(37, 79, 247); margin: 30px 0px;">
-                    </form>
+                       <div class="container">
+                          <div class="row">
+                              <div class="col ">
+                                
+                                  Aqui se hace la captura de imágenes del rostro
+                                  <br>
+                                <div class="input-group" >
+                                    <input type="file" name="myImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                      style="background: rgb(141, 185, 232);"
+                                      > 
+                                </div>
+
+                                  <!--div class="card">
+                                      <div class="card-header text-center">
+                                          <h5>Aqui se hace la captura de imágenes del rostro</h5>
+                                      </div>
+                                      <div class="card-body">
+                                        <div class="input-group" >
+                                          <input type="file" name="myImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                          style="background: rgb(141, 185, 232);"
+                                           > 
+                                        </div>
+                                      </div>
+                                  </div-->
+                              </div>
+                          </div>
+                        </div>
                   </div>
                   <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Comprendido</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
                   </div>
                 </div>
               </div>
@@ -141,6 +163,7 @@
         </form>
       </div>
       
+            
       <p class="text-center">¿Ya tienes una cuenta?
         <a href="/administradores/signin" class="text-info">Entrar</a></p>
     </div>

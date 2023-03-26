@@ -19,7 +19,10 @@ width: 30%;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 70px;
 }
+.video {
+  width: 100%;
 
+}
 .navbar-brand {
   font-family: 'Roboto Condensed /*Abyssinica SILSpicy Rice*//**/, cursive';
   font-size: 1.5rem;

@@ -64,7 +64,7 @@
       <h3>Editar Administrador</h3>
     </div>
     <div class="card-body bg-danger p-2" style="--bs-bg-opacity: .3;">
-      <form action="/administradores/edit-admin/{{user._id}}?_method=PUT" method="POST">
+      <form action="/administradores/edit-admin/{{admin._id}}?_method=PUT" method="POST">
         <input type="hidden" name="_method" value="PUT" />
         <div class="mb-3">
           <label for="name">Nombre:</label>
@@ -72,7 +72,7 @@
               type="text"
               name="name"
               class="form-control"
-              value="{{user.name}}"
+              value="{{admin.name}}"
           />
         </div>
         <div class="mb-3">
@@ -81,7 +81,7 @@
             type="email"
             name="email"
             class="form-control"
-            value="{{user.email}}"
+            value="{{admin.email}}"
           />
         </div>
         <div class="mb-3">
@@ -90,7 +90,7 @@
             type="telefono"
             name="telefono"
             class="form-control"
-            value="{{user.telefono}}"
+            value="{{admin.telefono}}"
           />
         </div>
         <div class="mb-3">
@@ -98,19 +98,66 @@
           <textarea
             name="domicilio"
             class="form-control"
-          >{{user.domicilio}}</textarea>
+          >{{admin.domicilio}}</textarea>
         </div>
         <h4 class="text-dark">Datos Biométricos</h4>
           <div class="row text-center">
             <div class="col-4">
               <label for="confirm_password">Foto:</label>
-              <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
-                   href="#" style="border-radius: 30px;"
+              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                   style="border-radius: 30px;" 
                 >
                 <i class="material-icons small rounded-circle " style="font-size:100px;">photo_camera
                 </i>
               </a>
             </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-dark">
+                  <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
+                    <h1 class="modal-title" id="staticBackdropLabel">Captura el rostro</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                       <div class="container">
+                          <div class="row">
+                              <div class="col ">
+                                
+                                  Aqui se hace la captura de imágenes del rostro
+                                  <br>
+                                <div class="input-group" >
+                                    <input type="file" name="myImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                      style="background: rgb(141, 185, 232);"
+                                      > 
+                                </div>
+
+                                  <!--div class="card">
+                                      <div class="card-header text-center">
+                                          <h5>Aqui se hace la captura de imágenes del rostro</h5>
+                                      </div>
+                                      <div class="card-body">
+                                        <div class="input-group" >
+                                          <input type="file" name="myImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                          style="background: rgb(141, 185, 232);"
+                                           > 
+                                        </div>
+                                      </div>
+                                  </div-->
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
             <div class="col-4">
               <label for="confirm_password">Huella:</label>
               <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
@@ -137,5 +184,6 @@
           Guardar
         </button>
       </form>
-    
+     </div>
+  </div> 
 </div>
