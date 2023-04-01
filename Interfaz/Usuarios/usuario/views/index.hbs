@@ -17,75 +17,38 @@
                 <h4 style="font-size: 1.7rem; font-family:'Calibri'"
                  >
                  <b>
-                  Registro de información de usuarios del edificio de condominio
+                  Acceso al edificio de condominio
                 </b> 
                 </h4>
             </blockquote>
         </div>
         <div class="col s12  l6 center">
-            <img class="d-block w-100" src="/img/logo_ipn_guinda.svg" alt="First slide" height="200px" >
+            <img class="d-block w-100" src="/img/logo_ipn_guinda.svg" alt="First slide" height="100px" >
         </div>    
     </div>
     <div>
         <img alt="" class="hide-on-small-only" src="/img/welcome.png" 
-            style="display: inline-block; width: 100%; margin: -100px auto auto;"
+            style="display: inline-block;position: absolute; width: 100%; margin: -90px auto auto;"
         >
     </div>
-    <div class="row">
+    <div class="row " style="top: -800px;>
+        <h1 align='center'>¿Cómo deseas acceder?</h1>
         <div class="col-4 center">
              <img src="/img/upiita-logo.png" alt="First slide" height="150px" >
         </div>
         <div class="col-8 center ">
+            
             <div class="row ">
                 <div class="col s6 center">
-                    <a class=" active btn" href="/administradores/signin">
-                        Iniciar Sesión
-                        <i class="material-icons right">send</i>
+                    <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                        style="border-radius: 30px;" 
+                        >
+                        <i class="material-icons small rounded-circle " style="font-size:90px;"> 📷 
+                        </i> 
+                        <!-- photo_camera -->                     
                     </a>
                 </div>
-                <div class="col s6 center">
-                    <a class="btn btn-outline-info" href="/administradores/signup">
-                        Registrarse
-                        <i class="material-icons right">edit_note</i>
-                    </a>
-                </div>
-            </div>
-        </div>
-            
-    </div> 
-    <!--
-    <form action="/uploads" method="POST" enctype="multipart/form-data">
-            <input type="file" name="myImages" accept="image/*" multiple>
-            <br>
-            
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block">
-                    Upload
-                </button>
-            </div>
-    </form> 
--->
-
-    <div class="col-4">
-        <label for="confirm_password"> Foto:</label>
-              <!-- Button trigger modal  -->
-              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                   style="border-radius: 30px;" 
-                >
-                <i class="material-icons small rounded-circle " style="font-size:90px;"> 📷 
-                </i> 
-                <!-- photo_camera -->                     
-              </a>
-    </div>
-    <button id="openModal">Abrir modal</button>
-	
-	<div id="cameraModal" style="display: none;">
-		<video id="videoElement"></video>
-		<button id="closeModal">Cerrar modal</button>
-	</div>
-
-
-            <!-- Modal -->
+                <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content text-dark">
@@ -93,82 +56,62 @@
                     <h1 class="modal-title" id="staticBackdropLabel">Captura el rostro</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <!--div class="modal-body">
+                  <div class="modal-body">
                        <div class="container">
                           <div class="row">
                               <div class="col ">
                                 
                                   Aqui se hace la captura de imágenes del rostro
                                   <br>
-                                 <video id="video" autoplay></video>
-                                <div class="text-center">
-                                    <button id="captureBtn" class="btn btn-primary">Capturar foto</button>
+                                <div class="input-group" >
+                                    <input type="file" name="myImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                      style="background: rgb(141, 185, 232);"
+                                      > 
                                 </div>
-                                
-    
-                            
+
+                                  <!--div class="card">
+                                      <div class="card-header text-center">
+                                          <h5>Aqui se hace la captura de imágenes del rostro</h5>
+                                      </div>
+                                      <div class="card-body">
+                                        <div class="input-group" >
+                                          <input type="file" name="myImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                          style="background: rgb(141, 185, 232);"
+                                           > 
+                                        </div>
+                                      </div>
+                                  </div-->
                               </div>
-                          <div class="col">
-                                
-	                        <canvas id="canvas" style="display: none;"></canvas>
-                          </div>       
                           </div>
                         </div>
-                  </div-->
-                     <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                            <div class="col ">
-                                <div id="my_camera"></div>
-                                <br>
-                                                                 <video id="video" autoplay></video>
-	                        <canvas id="canvas" style="display: none;"></canvas>
-
-                                <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar</button>
-                                </div>
-
-                            </div>
-                            <div class="col">
-                                <img src="" alt="Imagen capturada" id="captura-img">
-                                <h4>Rostro</h4>
-              <div class="col-md-4 ">
-                 <div class="card-columns">
-                    <div class="card animated fadeInDown">
-                      <img src={{imageData}} class="card-img-top" alt="">
-                          
-                     </div>
-                               
-                   </div>
-               </div>
-                            </div>
-                            </div>
-                        </div>
-                     </div>
-
-
+                  </div>
                   <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
-                    <!--button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button-->
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="document.body.removeChild(document.querySelector('img'))">Aceptar</button>
-
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
                   </div>
                 </div>
               </div>
             </div>
-         
-            <div class="col ">
-                                
-                                  Aqui se hace la captura de imágenes del rostro
-                                  <br>
-                                 <video id="video" autoplay></video>
-                                <div class="text-center">
-                                    <button id="captureBtn" class="btn btn-primary">Capturar</button>
-                                </div>
-                              </div>
-                          <div class="col">
-                                
-	                        <canvas id="canvas" style="display: none;"></canvas>
-                          </div>       
+
+                <div class="col s6 center">
+                    <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
+                        href="#" style="border-radius: 30px;"
+                        >
+                        <i class="material-icons small rounded-circle " style="font-size:100px;">fingerprint
+                        </i>
+                    </a>
+                </div>
+                <div class="col s6 center">
+                    <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
+                        href="#" style="border-radius: 30px;"
+                        >
+                        <i class="material-icons small rounded-circle " style="font-size:100px;">mic
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+            
+    </div>       
 
     <img src="/img/ellipse1.png" alt="" 
         style="position: absolute; width: 1616px; height: 1148px; left: 100px; bottom: -900px; z-index: -1;"

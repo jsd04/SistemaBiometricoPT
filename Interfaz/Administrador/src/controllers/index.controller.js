@@ -7,17 +7,6 @@ import {fileURLToPath} from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const renderIndex = async (req, res) => {
-  //function takeSnapshot() {
-   /* var capturas = [];
-
-    Webcam.snap(function(data_uri) {
-      capturas.push(data_uri);
-      // Enviar la imagen a un servidor o procesarla con Python
-      console.log(data_uri);
-    }
-   );*/
-  //}
-  
  // res.render("/");
     res.render("index",{  title: 'Web principal'})
   };
@@ -32,7 +21,7 @@ export const renderIndex = async (req, res) => {
   
   export const tomarFoto = (req, res) => {
     "use strict";
-
+/*
 const raspberryPiCamera = require('raspberry-pi-camera-native');
 
 raspberryPiCamera.on('frame', (frameData) => {
@@ -47,15 +36,9 @@ raspberryPiCamera.start({
     encoding: 'JPEG',
     quality: 75
 });
-  /*  const script = path.join(__dirname, "./views/administradores/tomar_foto.py");
-  
-    const child = spawn("python", [script]);
-  
-    child.on("close", () => {
-      console.log(`child process exited with code `);
-     // res.redirect("/");
-    });*/
-   /* const scriptPath = path.join(__dirname, "../views/administradores/tomar_foto.py");
+    
+    */
+  const scriptPath = path.join(__dirname, "../views/administradores/tomar_foto.py");
 
   const pythonProcess = spawn("python", [scriptPath]);
   let imageData = "";
@@ -72,11 +55,11 @@ raspberryPiCamera.start({
 
   pythonProcess.on("close", (code) => {
     console.log(`child process exited with code ${code}`);
-    */
+   
    res.redirect("/");
  //  res.redirect("/", { imageData });
-/*
-  });*/
+
+  });
 };
   //};
   
@@ -103,7 +86,7 @@ export const tomarFoto = (req, res) => {
 };
 */
   /* ++++++++++++ Toma de foto ++++++++++++ */
-  export const takeFoto = (req, res) => {
+ /* export const takeFoto = (req, res) => {
     console.log('estiooi')
    /* $(
  
@@ -165,6 +148,7 @@ export const tomarFoto = (req, res) => {
       res.redirect('/');
   //  };
     */
+   /*
   const openModalButton = document.querySelector('#openModal');
   const closeModalButton = document.querySelector('#closeModal');
   const videoElement = document.querySelector('#videoElement');

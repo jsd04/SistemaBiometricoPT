@@ -1,3 +1,16 @@
+
+import app from './server.js'
+import './database.js';
+
+async function main() {
+  app.listen(app.get("port"));
+  console.log("Server is listening on port 🚀", app.get("port"));
+  console.log('Sistema Biométrico S & R') 
+}
+
+main();
+
+
 /* de bluuweeb
 import express from "express";
 import path from 'path'
@@ -34,14 +47,3 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log("listo!  En servidor  🚀 ",PORT);
 });*/
-
-import app from './server.js'
-import './database.js';
-
-async function main() {
-  app.listen(app.get("port"));
-  console.log("Server is listening on port 🚀", app.get("port"));
-  console.log('Sistema Biométrico S & R') 
-}
-
-main();
