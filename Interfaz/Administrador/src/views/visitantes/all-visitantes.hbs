@@ -80,6 +80,27 @@
             <p>Correo: {{ correo }} </p>
             <p>Nombre de Inquilino: {{ nombreInquilino }} </p>
             <p>Parentesco: {{ parentesco }} </p>
+            <h1>Datos Biométricos</h1>
+        <div class="container p-2">
+             <div class="row">
+              <h4>Rostro</h4>
+              <div class="col-md ">
+                 <div class="card-columns">
+                    <div class="card animated fadeInDown">
+                      <img src={{rostro.path}} class="card-img-top" alt="">
+                          <div class="card-body">
+                                <h5 class="card-title">Nombre: {{rostro.originalname}}</h5>
+                                   <!--p class="card-text">Nombre en bd:{{rostro.filename }}</p-->
+                                    <p>fecha: {{rostro.date}}</p>
+                                        
+                          </div>
+                     </div>
+                               
+                   </div>
+               </div>
+              </div>
+        </div>
+
             <!-- DELETE REQUEST -->
             <form action="/visitantes/delete/{{_id}}?_method=DELETE" method="POST" class="btn">
               <input type="hidden" name="_method" value="DELETE">

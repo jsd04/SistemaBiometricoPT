@@ -5,6 +5,18 @@ export const renderInquilinoForm = (req, res) => res.render("inquilinos/new-inqu
 export const createNewInquilino = async (req, res) => {
   const { nombre, curp, piso, departamento, telefono, correo } = req.body;
   const errors = [];
+  console.log('dody',req.body)
+/*  console.log('body',rostro)
+  console.log('rostro',rostro.filename)*/
+ console.log('file',req.body.file)
+ const rostro = req.file;
+  console.log('file2', req.file)
+  console.log('rostro', rostro)
+
+
+  if(!rostro) {
+    errors.push({ text: "Por favor ingresa tus datos biométricos en especial de rostro" });
+  }
   if (!nombre) {
     errors.push({ text: "Por favor escribe el nombre del inquilino" });
   }
@@ -39,12 +51,33 @@ export const createNewInquilino = async (req, res) => {
       piso,
       departamento,
       telefono,
-      correo,
+      correo,rostro,
     });
 
-  const newInquilino = new Inquilino({ nombre, curp, piso, departamento, telefono, correo});
+  const newInquilino = new Inquilino({ 
+    nombre,
+     curp,
+     piso, 
+     departamento, 
+     telefono, 
+     correo,
+     rostro:{ 
+      data : req.file.filename,
+      contentType: 'image/png',
+      filename : req.file.filename,
+      path : '/uploads/' + req.file.filename,
+      originalname : req.file.originalname,
+      date : req.file.date,
+      size : req.file.size,
+      /*rostro:{
+        data:req.file.filename,
+        contentType: 'image/png'}*/
+    }
+    
+  });
   newInquilino.user = req.user.id;
   await newInquilino.save();
+  console.log('usuariogaudado',newInquilino)
   req.flash("success_msg", "Inquilino añadido exitosamente");
   res.redirect("/inquilinos/all-inquilinos");
 };

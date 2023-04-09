@@ -76,7 +76,7 @@ const storage = multer.diskStorage({
   }
 });
 //app.use(multer({  storage: storage}).array('myImages',3));
-app.use(multer({  storage: storage}).single('myImage'));
+app.use(multer({  storage: storage}).single('rostro'));
 
   
 

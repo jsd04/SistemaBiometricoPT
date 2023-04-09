@@ -5,6 +5,18 @@ export const renderVisitanteForm = (req, res) => res.render("visitantes/new-visi
 export const createNewVisitante = async (req, res) => {
   const { nombre, curp, telefono, correo, nombreInquilino, parentesco  } = req.body;
   const errors = [];
+  console.log('dody',req.body)
+  /*  console.log('body',rostro)
+    console.log('rostro',rostro.filename)*/
+  console.log('file',req.body.file)
+  const rostro = req.file;
+  console.log('file2', req.file)
+  console.log('rostro', rostro)
+  
+  
+    if(!rostro) {
+      errors.push({ text: "Por favor ingresa tus datos biométricos en especial de rostro" });
+    }
   if (!nombre) {
     errors.push({ text: "Por favor escribe el nombre del visitante" });
   }
@@ -39,12 +51,32 @@ export const createNewVisitante = async (req, res) => {
       telefono,
       correo,
       nombreInquilino,
-      parentesco,
+      parentesco,rostro,
     });
 
-  const newVisitante = new Visitante({ nombre, curp, telefono, correo, nombreInquilino, parentesco });
+  const newVisitante = new Visitante({
+    nombre,
+    curp,
+    telefono,
+    correo,
+    nombreInquilino,
+    parentesco,
+    rostro:{ 
+      data : req.file.filename,
+      contentType: 'image/png',
+      filename : req.file.filename,
+      path : '/uploads/' + req.file.filename,
+      originalname : req.file.originalname,
+      date : req.file.date,
+      size : req.file.size,
+      /*rostro:{
+        data:req.file.filename,
+        contentType: 'image/png'}*/
+    }
+  });
   newVisitante.user = req.user.id;
   await newVisitante.save();
+  console.log('usuariogaudado',newVisitante)
   req.flash("success_msg", "Visitante añadido exitosamente");
   res.redirect("/visitantes");
 };

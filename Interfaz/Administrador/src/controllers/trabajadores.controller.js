@@ -5,6 +5,18 @@ export const renderTrabajadorForm = (req, res) => res.render("trabajadores/new-t
 export const createNewTrabajador = async (req, res) => {
   const { nombre, curp, telefono, correo, cargo, domicilio } = req.body;
   const errors = [];
+  console.log('dody',req.body)
+/*  console.log('body',rostro)
+  console.log('rostro',rostro.filename)*/
+  console.log('file',req.body.file)
+  const rostro = req.file;
+  console.log('file2', req.file)
+  console.log('rostro', rostro)
+
+
+  if(!rostro) {
+    errors.push({ text: "Por favor ingresa tus datos biométricos en especial de rostro" });
+  }
   if (!nombre) {
     errors.push({ text: "Por favor escribe el nombre del trabajador" });
   }
@@ -18,7 +30,7 @@ export const createNewTrabajador = async (req, res) => {
   /* *******   Correo  ******* */
   var valido= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
   ///.+\@.+\..+/
-  var esvalido = valido.test(email);
+  var esvalido = valido.test(correo);
   if(esvalido==false){
    // [, ''] // <- Validación regexp para correo
     errors.push({text:"Error de correo, por favor ingrese un correo válido"})
@@ -37,12 +49,32 @@ export const createNewTrabajador = async (req, res) => {
       telefono,
       correo,
       cargo,
-      domicilio,
+      domicilio,rostro,
     });
 
-  const newTrabajador = new Trabajador({ nombre, curp, telefono, correo, cargo, domicilio });
+  const newTrabajador = new Trabajador({
+    nombre,
+    curp,
+    telefono,
+    correo,
+    cargo,
+    domicilio,
+    rostro:{ 
+      data : req.file.filename,
+      contentType: 'image/png',
+      filename : req.file.filename,
+      path : '/uploads/' + req.file.filename,
+      originalname : req.file.originalname,
+      date : req.file.date,
+      size : req.file.size,
+      /*rostro:{
+        data:req.file.filename,
+        contentType: 'image/png'}*/
+    }
+  });
   newTrabajador.user = req.user.id;
   await newTrabajador.save();
+  console.log('usuariogaudado',newTrabajador)
   req.flash("success_msg", "Trabajador añadido exitosamente");
   res.redirect("/trabajadores");
 };

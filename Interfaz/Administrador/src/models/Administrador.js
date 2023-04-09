@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 // Se crea el esquema del usuario administrador y los datos que contendra este usuario.
 const UserSchema = new mongoose.Schema(
   {
-    name: { type: String, trim: true, required: true},
+    name: { type: String, required: true},
     email: { type: String, required: false, unique: true, trim: true, 
      /* match     : [/.+\@.+\..+/, 'Por favor ingrese un correo válido'] // <- Validación regexp para correo */
     },
@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
       originalname:{ type:String },
       date:{ type: Date, default: Date.now},
       size:{  type: Number},
-      rostro:{ data: Buffer, contentType: String },
+      //rostro:{ data: Buffer, contentType: String },
         
     }
      /* Buffer son datos binariosy en mongodb las imagenes se guardan en datos binarios

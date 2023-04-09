@@ -82,9 +82,9 @@ export const signup = async (req, res) => {
       originalname : req.file.originalname,
       date : req.file.date,
       size : req.file.size,
-      rostro:{
+      /*rostro:{
         data:req.file.filename,
-        contentType: 'image/png'}
+        contentType: 'image/png'}*/
     }
   });
   newUser.password = await newUser.encryptPassword(password);

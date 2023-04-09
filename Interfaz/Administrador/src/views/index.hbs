@@ -77,12 +77,7 @@
                 <!-- photo_camera -->                     
               </a>
     </div>
-    <button id="openModal">Abrir modal</button>
-	
-	<div id="cameraModal" style="display: none;">
-		<video id="videoElement"></video>
-		<button id="closeModal">Cerrar modal</button>
-	</div>
+    
 
 
             <!-- Modal -->
@@ -93,55 +88,21 @@
                     <h1 class="modal-title" id="staticBackdropLabel">Captura el rostro</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <!--div class="modal-body">
-                       <div class="container">
-                          <div class="row">
-                              <div class="col ">
-                                
-                                  Aqui se hace la captura de imágenes del rostro
-                                  <br>
-                                 <video id="video" autoplay></video>
-                                <div class="text-center">
-                                    <button id="captureBtn" class="btn btn-primary">Capturar foto</button>
-                                </div>
-                                
-    
-                            
-                              </div>
-                          <div class="col">
-                                
-	                        <canvas id="canvas" style="display: none;"></canvas>
-                          </div>       
-                          </div>
-                        </div>
-                  </div-->
                      <div class="modal-body">
                         <div class="container">
                             <div class="row">
                             <div class="col ">
                                 <div id="my_camera"></div>
                                 <br>
-                                                                 <video id="video" autoplay></video>
-	                        <canvas id="canvas" style="display: none;"></canvas>
+                                <video id="video" autoplay></video>
+	                            <canvas id="canvas" style="display: none;"></canvas>
 
                                 <div class="d-flex justify-content-center">
                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar</button>
                                 </div>
 
                             </div>
-                            <div class="col">
-                                <img src="" alt="Imagen capturada" id="captura-img">
-                                <h4>Rostro</h4>
-              <div class="col-md-4 ">
-                 <div class="card-columns">
-                    <div class="card animated fadeInDown">
-                      <img src={{imageData}} class="card-img-top" alt="">
-                          
-                     </div>
-                               
-                   </div>
-               </div>
-                            </div>
+                            
                             </div>
                         </div>
                      </div>
@@ -155,20 +116,6 @@
                 </div>
               </div>
             </div>
-         
-            <div class="col ">
-                                
-                                  Aqui se hace la captura de imágenes del rostro
-                                  <br>
-                                 <video id="video" autoplay></video>
-                                <div class="text-center">
-                                    <button id="captureBtn" class="btn btn-primary">Capturar</button>
-                                </div>
-                              </div>
-                          <div class="col">
-                                
-	                        <canvas id="canvas" style="display: none;"></canvas>
-                          </div>       
 
     <img src="/img/ellipse1.png" alt="" 
         style="position: absolute; width: 1616px; height: 1148px; left: 100px; bottom: -900px; z-index: -1;"
