@@ -4,16 +4,12 @@ import {dirname, join} from 'path'
 import {fileURLToPath} from 'url'
 
   export const renderIndex = async (req, res) => {
-    res.render("index",{  title: 'USUARIO'})
+    res.render("index3",{  title: 'USUARIO'})
     //buenofinal es index3
   };
   
   export const renderAbout = async (req, res) => {
     res.render("about",{ title: 'About me'})
-   /* const admin = await Administrador.find({ admin: req.user.id })
-    .sort({ date: "desc" })
-    .lean();
-  res.render("administradores", { admin});*/
   };
 
   export const ingresar = (req, res) => {
