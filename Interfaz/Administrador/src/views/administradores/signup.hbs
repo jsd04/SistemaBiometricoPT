@@ -92,7 +92,7 @@
               </a>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal Camara -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content text-dark">
@@ -100,31 +100,62 @@
                     <h1 class="modal-title" id="staticBackdropLabel">Captura el rostro</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
+                     <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                            <div class="col ">
+                                <div id="my_camera"></div>
+                                <br>
+                                <video id="video" autoplay></video>
+	                            <canvas id="canvas" style="display: none;"></canvas>
+
+                                <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar</button>
+                                </div>
+
+                            </div>
+                            
+                            </div>
+                        </div>
+                     </div>
+
+
+                  <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
+                    <!--button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button-->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="document.body.removeChild(document.querySelector('img'))">Aceptar</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <label for="confirm_password">Huella:</label>
+              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+                   style="border-radius: 30px;" 
+                >
+                <i class="material-icons small rounded-circle " style="font-size:100px;">fingerprint
+                </i>
+              </a>
+            </div>
+             <!-- Modal Huella-->
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-dark">
+                  <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
+                    <h1 class="modal-title" id="staticBackdropLabel">Captura la huella</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
                   <div class="modal-body">
                        <div class="container">
                           <div class="row">
                               <div class="col ">
                                 
-                                  Aqui se hace la captura de imágenes del rostro
+                                  Aqui se hace la toma de muestras de la huella
                                   <br>
-                                <div class="input-group" >
-                                    <input type="file" name="rostro" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
-                                      style="background: rgb(141, 185, 232);"
-                                      > 
+                                <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar Huella</button>
                                 </div>
-
-                                  <!--div class="card">
-                                      <div class="card-header text-center">
-                                          <h5>Aqui se hace la captura de imágenes del rostro</h5>
-                                      </div>
-                                      <div class="card-body">
-                                        <div class="input-group" >
-                                          <input type="file" name="myImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"
-                                          style="background: rgb(141, 185, 232);"
-                                           > 
-                                        </div>
-                                      </div>
-                                  </div-->
                               </div>
                           </div>
                         </div>
@@ -135,25 +166,45 @@
                 </div>
               </div>
             </div>
+           
 
             <div class="col-4">
-              <label for="confirm_password">Huella:</label>
-              <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
-                   href="#" style="border-radius: 30px;"
-                >
-                <i class="material-icons small rounded-circle " style="font-size:100px;">fingerprint
-                </i>
-              </a>
-            </div>
-            <div class="col-4">
               <label for="confirm_password">Voz:</label>
-              <a class="waves-effect waves-light text-dark btn p-2 text-center" style="" 
-                   href="#" style="border-radius: 30px;"
+              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
+                   style="border-radius: 30px;" 
                 >
                 <i class="material-icons small rounded-circle " style="font-size:100px;">mic
                 </i>
               </a>
-            </div>              
+            </div>   
+               <!-- Modal Voz-->
+            <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-dark">
+                  <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
+                    <h1 class="modal-title" id="staticBackdropLabel">Captura la voz</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                       <div class="container">
+                          <div class="row">
+                              <div class="col ">
+                                
+                                  Aqui se hace la captura de voz
+                                  <br>
+                                <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar Voz</button>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>          
           
               
           </div>

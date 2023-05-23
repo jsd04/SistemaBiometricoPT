@@ -1,13 +1,14 @@
 import Image from '../models/image.model.js';
 import Image2 from '../models/image2.js';
 import multer from 'multer';
-import path from 'path'
+import path from 'path';
+import { spawn } from "child_process";
 import {dirname, join} from 'path'
 import {fileURLToPath} from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export const renderIndex = async (req, res) => {
- // res.render("/");
+  export const renderIndex = async (req, res) => {
+  // res.render("/");
     res.render("index",{  title: 'Web principal'})
   };
   
@@ -17,164 +18,79 @@ export const renderIndex = async (req, res) => {
   export const renderContact = (req, res) => {
     res.render("contact",{ title: 'Contact'})
   };
-  import { spawn } from "child_process";
+  
   
   export const tomarFoto = (req, res) => {
     "use strict";
-/*
-const raspberryPiCamera = require('raspberry-pi-camera-native');
-
-raspberryPiCamera.on('frame', (frameData) => {
-    //Frame Data es un buffer NodeJS
-    console.log('Imagen captada', frameData);
-});
-
-raspberryPiCamera.start({
-    width: 1280,
-    height: 720,
-    fps: 2,
-    encoding: 'JPEG',
-    quality: 75
-});
-    
-    */
-  const scriptPath = path.join(__dirname, "../views/administradores/tomar_foto.py");
-
-  const pythonProcess = spawn("python", [scriptPath]);
-  let imageData = "";
-
-
-  pythonProcess.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-    imageData += data;
-  });
-
-  pythonProcess.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
-  });
-
-  pythonProcess.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
-   
-   res.redirect("/");
- //  res.redirect("/", { imageData });
-
-  });
-};
-  //};
   
-  /*import { spawn } from "child_process";
-import path from "path";
+    const scriptPath = path.join(__dirname, "../views/administradores/tomar_foto.py");
+    const pythonProcess = spawn("python", [scriptPath]);
+    let imageData = "";
 
-export const tomarFoto = (req, res) => {
-  const scriptPath = path.join(__dirname, "../python/tomar_foto.py");
-
-  const pythonProcess = spawn("python", [scriptPath]);
-
-  pythonProcess.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-  });
-
-  pythonProcess.stderr.on("data", (data) => {
-    console.error(`stderr: ${data}`);
-  });
-
-  pythonProcess.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
-    res.redirect("/");
-  });
-};
-*/
-  /* ++++++++++++ Toma de foto ++++++++++++ */
- /* export const takeFoto = (req, res) => {
-    console.log('estiooi')
-   /* $(
- 
-      '#staticBackdrop').on('shown.bs.modal', function() {
-   // document.addEventListener("DOMContentLoaded", function() {
-      const video = document.getElementById('video');
-      const captureBtn = document.getElementById('captureBtn');
-    
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-          video.srcObject = stream;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-    
-      captureBtn.addEventListener('click', () => {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-        const img = new Image();
-        img.src = canvas.toDataURL();
-        document.body.appendChild(img);
-      });
+    pythonProcess.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
+      imageData += data;
     });
-    
-  
-    req.flash("success_msg", "La subdia ha sido un éxito.");
-    res.redirect('/'); */
-   // export const takeFoto = (req, res) => {
-   /*   const video = document.getElementById('video');
-      const captureBtn = document.getElementById('captureBtn');
-    
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-          video.srcObject = stream;
-          // add event listener to capture button
-          captureBtn.addEventListener('click', () => {
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-            const img = new Image();
-            img.src = canvas.toDataURL();
-            document.body.appendChild(img);
-          });
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    
-      req.flash("success_msg", "La subdia ha sido un éxito.");
-      res.redirect('/');
-  //  };
-    */
-   /*
-  const openModalButton = document.querySelector('#openModal');
-  const closeModalButton = document.querySelector('#closeModal');
-  const videoElement = document.querySelector('#videoElement');
-  
-  openModalButton.addEventListener('click', () => {
-    // Pedir permiso para acceder a la cámara
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        // Mostrar el video en el modal
-        videoElement.srcObject = stream;
-        videoElement.play();
-        document.getElementById('cameraModal').style.display = 'block';
-      })
-      .catch(err => {
-        console.error('No se pudo acceder a la cámara', err);
-      });
-  });
-  
-  closeModalButton.addEventListener('click', () => {
-    videoElement.pause();
-    videoElement.srcObject.getTracks()[0].stop();
-    document.getElementById('cameraModal').style.display = 'none';
-  });
-  res.render("/");
+
+    pythonProcess.stderr.on("data", (data) => {
+      console.error(`stderr: ${data}`);
+    });
+
+    pythonProcess.on("close", (code) => {
+      console.log(`child process exited with code ${code}`);
+     res.redirect("/");
+    //  res.redirect("/", { imageData });
+    });
   };
- 
+
+  export const tomarHuella = (req, res) => {
+    "use strict";
+  
+    const scriptPath = path.join(__dirname, "../views/administradores/tomar_foto.py");
+    const pythonProcess = spawn("python", [scriptPath]);
+    let imageData = "";
+
+    pythonProcess.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
+      imageData += data;
+    });
+
+    pythonProcess.stderr.on("data", (data) => {
+      console.error(`stderr: ${data}`);
+    });
+
+    pythonProcess.on("close", (code) => {
+      console.log(`child process exited with code ${code}`);
+     res.redirect("/");
+    //  res.redirect("/", { imageData });
+    });
+  };
+
+  export const tomarVoz = (req, res) => {
+    "use strict";
+  
+    const scriptPath = path.join(__dirname, "../views/administradores/tomar_foto.py");
+    const pythonProcess = spawn("python", [scriptPath]);
+    let imageData = "";
+
+    pythonProcess.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
+      imageData += data;
+    });
+
+    pythonProcess.stderr.on("data", (data) => {
+      console.error(`stderr: ${data}`);
+    });
+
+    pythonProcess.on("close", (code) => {
+      console.log(`child process exited with code ${code}`);
+     res.redirect("/");
+    //  res.redirect("/", { imageData });
+    });
+  };
+  
+
+
   /* ************* Subida de foto  *********** */
 /*
   export const uploadFile = async (req,res) => {

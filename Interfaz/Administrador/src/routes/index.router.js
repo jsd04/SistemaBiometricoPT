@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { renderIndex, renderAbout, renderContact, tomarFoto } from "../controllers/index.controller.js";
-//import { uploadFiles } from "../controllers/index.controller.js";
+import { tomarHuella, tomarVoz } from "../controllers/index.controller.js";
 //import { buscador } from "../controllers/index.controller.js";
 //import { takeFoto} from "../controllers/index.controller.js";
 const router = Router();
@@ -15,7 +15,8 @@ router.get("/contact", renderContact);
 /*router.post("/upload" ,uploadFile)
 router.post("/uploads" ,uploadFiles)*/
 router.get("/tomarFoto",tomarFoto);
-//router.post("/tomarFoto",takeFoto);
+router.get("/tomarHuella",tomarHuella);
+router.get("/tomarVoz",tomarVoz);
 
 export default router;
 

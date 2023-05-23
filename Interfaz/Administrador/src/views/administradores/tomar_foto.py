@@ -1,4 +1,7 @@
+
 import cv2
+
+#import cv2
 import base64
 import sys
 # ************** Abrir camara **************
@@ -33,11 +36,11 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1440) # alto
 ret, frame = cap.read()
 
 # Guardamos la imagen en un archivo
-cv2.imwrite('rostro.jpg',frame)
+cv2.imwrite('rostro15.jpg',frame)
 
 #{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}
 # Codificar la imagen en base64
-with open("rostro.jpg", "rb") as image_file:
+with open("rostro15.jpg", "rb") as image_file:
     encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
 
 # Devolver la imagen codificada en base64 a la consola
