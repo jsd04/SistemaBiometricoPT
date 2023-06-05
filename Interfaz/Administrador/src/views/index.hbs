@@ -81,6 +81,7 @@
 
 
             <!-- Modal -->
+            
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content text-dark">
@@ -92,11 +93,43 @@
                         <div class="container">
                             <div class="row">
                             <div class="col ">
-                                <div id="my_camera"></div>
                                 <br>
-                                <video id="video" autoplay></video>
-	                            <canvas id="canvas" style="display: none;"></canvas>
+                                <div id="my_camera"></div>
+                                <input type=button value="Take Snapshot" onClick="take_snapshot()">  
+                                <div id="results" ></div>
+                                <!-- Webcam.min.js -->
+                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+                                
+                                <!-- Configure a few settings and attach camera  -->
+                                <script language="JavaScript">
+                                    Webcam.set({
+                                        width: 320,
+                                        height: 240,
+                                        image_format: 'jpeg',
+                                        jpeg_quality: 90
+                                    });
+                                    Webcam.attach( '#my_camera' );
+                                <!-- Code to handle taking the snapshot and displaying it locally -->
+                                
+                                function take_snapshot() {
+                                    // take snapshot and get image data
+                                    Webcam.snap( function(data_uri) {
+                                        // display results in page
+                                        document.getElementById('results').innerHTML = 
+                                        '<img src="'+data_uri+'"/>';
+                                    } );
+                                    // Save the image data to a variable
+                                    var imageData = data_uri;
+                                    
+                                    // Do something with the image data...
+                                    console.log(imageData);
 
+                                }
+
+                                
+                                </script>
+                                
+                                                  
                                 <div class="d-flex justify-content-center">
                                 <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar</button>
                                 </div>
@@ -109,13 +142,110 @@
 
 
                   <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
-                    <!--button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button-->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="document.body.removeChild(document.querySelector('img'))">Aceptar</button>
 
                   </div>
                 </div>
               </div>
             </div>
+           
+            <div class="col-4">
+              <label for="confirm_password">Huella:</label>
+              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+                   style="border-radius: 30px;" 
+                >
+                <i class="material-icons small rounded-circle " style="font-size:100px;">fingerprint
+                </i>
+              </a>
+            </div>
+             <!-- Modal Huella-->
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-dark">
+                  <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
+                    <h1 class="modal-title" id="staticBackdropLabel">Captura la huella</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                       <div class="container">
+                          <div class="row">
+                              <div class="col ">
+                                
+                                  Aqui se hace la toma de muestras de la huella
+                                  <br>
+                                <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar Huella</button>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+
+            <div class="col-4">
+              <label for="confirm_password">Voz:</label>
+              <a class="waves-effect waves-light text-dark btn p-2 text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
+                   style="border-radius: 30px;" 
+                >
+                <i class="material-icons small rounded-circle " style="font-size:100px;">mic
+                </i>
+              </a>
+            </div>   
+               <!-- Modal Voz-->
+            <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content text-dark">
+                  <div class="modal-header bg-success" style="--bs-bg-opacity: .5;">
+                    <h1 class="modal-title" id="staticBackdropLabel">Captura la voz</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                       <div class="container">
+                          <div class="row">
+                              <div class="col ">
+                                
+                                  Aqui se hace la captura de voz
+                                  <br>
+
+                                    <div>
+                                        <select name="listaDeDispositivos" id="listaDeDispositivos"></select>
+                                        <br><br>
+                                        <p id="duracion"></p>
+                                        <br>
+                                        <button id="btnComenzarGrabacion">
+
+                                            🎙️ Comenzar ▶️</button>
+                                        <button id="btnDetenerGrabacion"> ⏸️ Detener</button>
+                                    </div>
+                                    <script src="webcamjs/voz.js"></script>
+                                    <br>
+                                    <br>
+                                    <!--
+                                    <script type="text/javascript" src="C:/Users/yobis/Desktop/Proyectos/pt/SistemaBiometricoPT/Interfaz/Administrador/src/views/voz.js"></script>
+                                    <script type="text/javascript" src="C:/Users/yobis/Desktop/Proyectos/pt/SistemaBiometricoPT/Interfaz/Administrador/src/views/administradores/tomar_voz.js"></script>
+                                   -->
+                                  
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarVoz'">Capturar Voz</button>
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href = '/tomarFoto'">Capturar</button>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer bg-success" style="--bs-bg-opacity: .5;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>  
 
     <img src="/img/ellipse1.png" alt="" 
         style="position: absolute; width: 1616px; height: 1148px; left: 100px; bottom: -900px; z-index: -1;"

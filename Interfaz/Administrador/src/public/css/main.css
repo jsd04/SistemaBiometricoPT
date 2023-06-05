@@ -23,6 +23,7 @@ width: 30%;
   width: 100%;
 
 }
+
 .navbar-brand {
   font-family: 'Roboto Condensed /*Abyssinica SILSpicy Rice*//**/, cursive';
   font-size: 1.5rem;
@@ -41,6 +42,14 @@ header img {
   min-height: 100vh;
   flex-direction: column;
 }
+/*
+#my_camera{
+  width: 320px;
+  height: 240px;
+  border: 1px solid black;
+}
+*/
+
 main {
   flex: 1 0 auto;
 }

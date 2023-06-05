@@ -19,6 +19,8 @@
     "express": "^4.18.2",
     "express-handlebars": "^6.0.7",
     "express-session": "^1.17.3",
+    "fastify": "^2.14.0",
+    "fastify-static": "^2.7.0",
     "method-override": "^3.0.0",
     "moment": "^2.29.4",
     "mongoose": "^6.9.2",
