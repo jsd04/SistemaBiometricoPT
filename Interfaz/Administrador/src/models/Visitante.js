@@ -27,7 +27,12 @@ const VisitanteSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    demo:{
+      type: String,
+      required: false,
+    },
     //************* Datos biometricos *************** */
+    
     rostro: {
       filename: { type: String },
       path: { type: String },

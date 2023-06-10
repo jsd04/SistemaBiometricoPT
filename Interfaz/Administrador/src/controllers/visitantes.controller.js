@@ -3,20 +3,28 @@ import Visitante from "../models/Visitante.js";
 export const renderVisitanteForm = (req, res) => res.render("visitantes/new-visitante");
 
 export const createNewVisitante = async (req, res) => {
-  const { nombre, curp, telefono, correo, nombreInquilino, parentesco  } = req.body;
+  const { nombre, curp, telefono, correo, nombreInquilino, parentesco,demo } = req.body;
   const errors = [];
   console.log('dody',req.body)
   /*  console.log('body',rostro)
     console.log('rostro',rostro.filename)*/
+  
   console.log('file',req.body.file)
   const rostro = req.file;
   console.log('file2', req.file)
   console.log('rostro', rostro)
   
-  
-    if(!rostro) {
+   /*  const demoText  = req.file;
+  console.log('file2', req.file)
+  console.log('demo', demoText);
+  if(!demoText) {
+    errors.push({ text: "Por favor ingresa tus datos biométricos en especial de demotext" });
+  }*/
+  /*
+ if(!rostro) {
       errors.push({ text: "Por favor ingresa tus datos biométricos en especial de rostro" });
     }
+    */
   if (!nombre) {
     errors.push({ text: "Por favor escribe el nombre del visitante" });
   }
@@ -51,7 +59,7 @@ export const createNewVisitante = async (req, res) => {
       telefono,
       correo,
       nombreInquilino,
-      parentesco,rostro,
+      parentesco,rostro,demo,
     });
 
   const newVisitante = new Visitante({
@@ -61,6 +69,7 @@ export const createNewVisitante = async (req, res) => {
     correo,
     nombreInquilino,
     parentesco,
+    demo,
     rostro:{ 
       data : req.file.filename,
       contentType: 'image/png',
@@ -69,10 +78,9 @@ export const createNewVisitante = async (req, res) => {
       originalname : req.file.originalname,
       date : req.file.date,
       size : req.file.size,
-      /*rostro:{
-        data:req.file.filename,
-        contentType: 'image/png'}*/
-    }
+      
+    } 
+  
   });
   newVisitante.user = req.user.id;
   await newVisitante.save();
