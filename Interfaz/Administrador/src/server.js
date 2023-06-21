@@ -13,7 +13,7 @@ import { MONGODB_URI, PORT } from "./config.js";
 import "./config/passport.js";
 import multer from 'multer';
 import {v4 as uuidv4} from 'uuid';
-//import webcam from 'node-webcam';
+import webcam from 'node-webcam';
 
 
 
