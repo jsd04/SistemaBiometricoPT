@@ -1,7 +1,7 @@
 import Inquilino from "../models/Inquilino.js";
-
+//get
 export const renderInquilinoForm = (req, res) => res.render("inquilinos/new-inquilino");
-
+//post
 export const createNewInquilino = async (req, res) => {
   const { nombre, curp, piso, departamento, telefono, correo } = req.body;
   const errors = [];
@@ -54,7 +54,46 @@ export const createNewInquilino = async (req, res) => {
       correo,rostro,
     });
 
-  const newInquilino = new Inquilino({ 
+  const newInquilino = new rostro({ 
+    
+     rostro:{ 
+      data : req.file.filename,
+      contentType: 'image/png',
+      filename : req.file.filename,
+      path : '/uploads/' + req.file.filename,
+      originalname : req.file.originalname,
+      date : req.file.date,
+      size : req.file.size,
+      /*rostro:{
+        data:req.file.filename,
+        contentType: 'image/png'}*/
+    }
+    
+  });
+  newFacial.user = req.user.id;
+  await newFacial.save();
+  console.log('Facialogaudado',newFacial)
+  req.flash("success_msg", "Fcail añadido exitosamente");
+  res.redirect("/inquilinos/all-inquilinos");
+};
+ /****************************** */
+
+//get
+ export const facialForm = async (req, res) => {  res.render("new-facial",{ title: 'Faciales'})}
+//post
+export const createNewfacial = async (req, res) => {
+  const { nombre, curp, piso, departamento, telefono, correo } = req.body;
+  const errors = [];
+  console.log('dody',req.body)
+/*  console.log('body',rostro)
+  console.log('rostro',rostro.filename)*/
+ console.log('file',req.body.file)
+ const rostro = req.file;
+  console.log('file2', req.file)
+  console.log('rostro', rostro)
+
+
+  const newFacial= new Facial({ 
     nombre,
      curp,
      piso, 
@@ -81,6 +120,9 @@ export const createNewInquilino = async (req, res) => {
   req.flash("success_msg", "Inquilino añadido exitosamente");
   res.redirect("/inquilinos/all-inquilinos");
 };
+
+
+
 
 export const renderInquilinos = async (req, res) => {
   const inquilinos = await Inquilino.find({ user: req.user.id })

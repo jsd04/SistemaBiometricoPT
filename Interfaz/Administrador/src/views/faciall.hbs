@@ -78,56 +78,73 @@
                                   
                       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script> 
                                 
-                              
-                      <!--   -->  
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>       
+                                <!-- Configure a few settings and attach camera -->
+                               <!--  <script type="text/javascript" src="/biometricos/webcam.js"></script>
+                                <script type="text/javascript" src="/biometricos/webcam.min.js"></script> -->
+                      <!--   -->         
                      <script language="JavaScript">
-                       Webcam.set({
-                            width: 320, 
-                            height: 240,
-                            image_format: 'jpeg',
-                            jpeg_quality: 90
+                        Webcam.set({
+                        width: 320,
+                        height: 240,
+                        image_format: 'jpeg',
+                        jpeg_quality: 90
                         });
-
-                        Webcam.attach('#my_camera');
-                        path="C:/Users/yobis/Desktop/Proyectos/pt/SistemaBiometricoPT/Interfaz/Administrador/src/public/fotos/"
-                        var numPhotos = 10; // Número total de fotos que se van a capturar
+                        Webcam.attach( '#my_camera' );
+                                  
+                         <!-- Code to handle taking the snapshot and displaying it locally -->
+                              
+                         var numPhotos = 10; // Número total de fotos que se van a capturar
                         var photoCounter = 0; // Contador de fotos capturadas
+                         <!--for (var i = 0; i <numPhotos; i++) {-->
                         function takeSnapshotAndSend() {
-                          for (var i = 0; i <numPhotos; i++) {
                             // Tomar la instantánea y obtener los datos de la imagen
                             Webcam.snap(function(data_uri) {
                                // display results in page
                             document.getElementById('results').innerHTML = 
-                           // '<img src="'+data_uri+'"/>';
-                            '<img id="imageprev" src="'+data_uri+'"/>';
-                               
+                            '<img src="'+data_uri+'"/>';
+                                // Crear un objeto FormData y agregar los datos de la imagen
+                                var formData = new FormData();
+                                formData.append('image', dataURItoBlob(data_uri), 'snapshot.png');
 
-                              // Generar un nombre de archivo único para la imagen
-                              var fileName = 'imagen_' + photoCounter + '.png';
+                                // Enviar los datos de la imagen al servidor
+                                var xhr = new XMLHttpRequest();
+                                xhr.open('POST', 'https://biometricsystem.hugedata.systems/Facial/', true);  // Ruta en el servidor para guardar la imagen
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                        console.log('La imagen se ha guardado correctamente.');
 
-                              // Guardar la imagen localmente con el nombre de archivo generado
-                              var saveUrl = path + fileName; // Ruta y nombre de archivo para guardar la imagen
-                             
+                                        // Incrementar el contador de fotos capturadas
+                                        photoCounter++;
 
-                              // Incrementar el contador de fotos capturadas
-                              photoCounter++;
-                              console.log("Foto tomada ", photoCounter)
-                              savAs(data_uri)
+                                        // Verificar si se han capturado todas las fotos
+                                        if (photoCounter < numPhotos) {
+                                            // Si no se han capturado todas las fotos, tomar otra instantánea y enviarla
+                                            takeSnapshotAndSend();
+                                        } else {
+                                            console.log('Se han capturado y enviado todas las fotos.');
+                                        }
+                                    }
+                                };
+                                xhr.send(formData);
+                            });
+                        
 
-                              
-                          });
-                          
-                             
-                            
-                      }console.log("Total de Fotos tomadas ", photoCounter)
-                      
-                      
-                     }
+                        // Función auxiliar para convertir los datos de la imagen en un objeto Blob
+                        function dataURItoBlob(dataURI) {
+                            var byteString = atob(dataURI.split(',')[1]);
+                            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+                            var ab = new ArrayBuffer(byteString.length);
+                            var ia = new Uint8Array(ab);
+                            for (var i = 0; i < byteString.length; i++) {
+                                ia[i] = byteString.charCodeAt(i);
+                            }
+                            return new Blob([ab], { type: mimeString });
+                            console.log("Blob ", Blob)
+                        }
+                        }
 
 
                     </script>
-                    
                     </div>                   
                   </div>          
                     <br>
@@ -148,16 +165,12 @@
           </div>
           <div class="row justify-content-end">
           <div class="col-4 align-self-end">
-           <!-- <a class="waves-effect waves-light text-white btn p-2 text-center  " style="background: rgb(29, 240, 134);border-radius: 20px;"
+            <a class="waves-effect waves-light text-white btn p-2 text-center  " style="background: rgb(29, 240, 134);border-radius: 20px;"
                       href="javascript:window.history.back(); "
                   > Aceptar
                  <i class="material-icons small rounded-circle " style="font-size:20px;">face
-                 </i>                   type="submit"
-            </a>-->
-            <button class="btn btn-info w-100">
-              Guardar 
-              <i class="material-icons "> save</i>
-            </button>
+                 </i>                  
+            </a>
           </div>
       </div>
       </div>

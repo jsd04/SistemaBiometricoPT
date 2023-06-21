@@ -9,7 +9,11 @@ import {
     renderEditForm,
     updateInquilino,
     deleteInquilino,
+    createNewfacial ,
+    facialForm,
   } from "../controllers/inquilinos.controller.js";
+  //import { facial} from "../controllers/inquilinos.controller.js";
+
 const router = Router();
 
 
@@ -19,8 +23,9 @@ router.get("/about", renderAbout);
 router.get("/contact", renderContact);
 
 router.get("/inquilinos/add", renderInquilinoForm);
-
+router.get("/facial-add", facialForm);
 router.post("/inquilinos/new-inquilino", createNewInquilino);
+router.post("/new-facial",createNewfacial );
 
 router.get("/inquilinos/inquilinos_inicial_copy", renderInquilinosInicial);
 

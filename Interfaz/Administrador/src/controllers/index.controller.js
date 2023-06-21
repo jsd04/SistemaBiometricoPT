@@ -6,7 +6,8 @@ import path from 'path';
 import { spawn } from "child_process";
 import {dirname, join} from 'path'
 import {fileURLToPath} from 'url'
-const __dirname = dirname(fileURLToPath(import.meta.url));
+
+
 
   export const renderIndex = async (req, res) => {
   // res.render("/");
@@ -52,7 +53,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
   /****************************** */
   export const huella = async (req, res) => {
 
-    res.render("huella",{ title: 'Huella'})
+    res.render("foto",{ title: 'Huella'})
     /*
     const trabajadores = await Trabajador.find({ user: req.user.id })
     .sort({ date: "desc" })
@@ -61,7 +62,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
     */
 
   }
-
+ 
 
   export const tomarFoto = (req, res) => {
     "use strict";
